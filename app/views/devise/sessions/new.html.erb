@@ -1,0 +1,53 @@
+
+<p><%= render "devise/shared/error_messages", resource: resource %></p>
+
+<body class="text-center container w-30">
+  <% if user_signed_in? %>
+    <h2 class="text-center mt-5">      <%= link_to "apprAise-factory", home_user_page_path, :style=>"text-decoration:none;color:#177180"  %></h2>
+  <% else %>
+    <h2 class="text-center mt-5">      <%= link_to "apprAise-factory", home_index_path, :style=>"text-decoration:none;color:#177180"  %></h2>
+  <% end %>
+  <div class=" justify-content-center jumbotron  bg-white">
+
+    <h3>ログイン</h3>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <div class="field">
+        <%= f.label :email, {class: 'sr-only'} %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => 'form-control pt-4 pb-4', placeholder:"メールアドレス"  %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, {class: 'sr-only'}%>
+        <% if @minimum_password_length %>
+        <small style="color:gray">(<%= @minimum_password_length %> 桁のパスワード)</small>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "current-password",placeholder:"パスワード", :class => 'form-control pt-4 pb-4' %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "ログイン", :class=>"btn w-100 mb-3", :style=>"background-color:#177180; color:white;" %>
+      </div>
+    <% end %>
+    <%= render "devise/shared/links" %>
+  </div>
+</body>
+
+<style>
+  .w-30{
+    width:30%;
+  }
+  ul{
+    list-style: none;
+    padding: 0;
+    color:red;
+  }
+</style>
