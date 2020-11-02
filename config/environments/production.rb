@@ -62,7 +62,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { protocol: 'https',host:'Herokuドメイン'}
+  config.action_mailer.default_url_options = { protocol: 'https',host:'appraise-factory.herokuapp.com'}
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.gmail.com',
     :port           => '587',
