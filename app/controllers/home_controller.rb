@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   end
   def user_page
     redirect_to home_index_path unless user_signed_in?
+    
   end
-  
+
 end
