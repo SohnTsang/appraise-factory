@@ -1,0 +1,25 @@
+<div class="col text-center m-auto" style="width:70%;">
+  <h4 class="mb-3">物件紹介</h4>
+  <%= form_for @post do |f| %>
+      <div class="form-group">
+          <%= f.label :category, 'カテゴリー' %>
+          <%= f.text_field :category, required: true, class: 'form-control', value: "物件紹介", :readonly => true %>
+      </div>
+      <div class="form-group">
+          <%= f.label :email, 'メールアドレス' %>
+          <%= f.text_field :email, required: true, class: 'form-control', value: @user, :readonly => true %>
+      </div>
+
+      <div class="form-group">
+          <%= f.label :content, '物件条件' %>
+          <%= f.text_area :content, class: 'form-control', rows:10 %>
+          <small id=content-tip" class="form-text text-muted">
+              物件条件を入力してください。
+          </small>
+      </div>
+      <%= f.submit '送信', class: 'btn btn-info btn-block' %>
+      <small id="submit-tip" class="form-text text-muted">
+          送信する前に内容を見直してください
+      </small>
+  <% end %>
+</div>

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'users/show'
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+  end
 
   devise_for :users, controllers: {
     registrations: "users/registrations"
@@ -16,6 +18,11 @@ Rails.application.routes.draw do
   end
   get 'home/index'
   get 'home/user_page'
+  get 'users/show'
+  get 'users/request'
+  get 'users/recommendation'
+
+
   root to: 'home#index'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 

@@ -1,5 +1,4 @@
 <%= render 'layouts/login_header' %>
-
 <div class="d-flex align-items-center">
     <h1>お問合せ一覧</h1>
 
@@ -7,16 +6,17 @@
 <table class="table table-bordered border-primary table-hover table-sm posts_table">
   <thead class="bg-info text-light">
     <tr>
-      <th scope="col" style="width: 100px">類別</th>
+      <th scope="col" style="width: 40px">No.</th>
       <th scope="col">送信日</th>
       <th scope="col">更新日時</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
+　　　<!-- 追加 -->
       <% @posts.each do |post| %>
         <tr>
-            <th><%= post.category %></th>
+            <th><%= post.id %></th>
             <td><%= post.created_at.to_s(:datetime_base) %></td>
             <td><%= post.updated_at.to_s(:datetime_base) %></td>
             <td><%= link_to '詳細', post, id: "detail-" + post.id.to_s, class: 'btn btn-outline-info' %></td>
