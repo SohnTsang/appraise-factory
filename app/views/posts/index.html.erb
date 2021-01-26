@@ -28,7 +28,7 @@
               <td><%= post.read ? '既読' : '未読' %></td>
             <% else %>
               <% if post.comments.exists? && post.comments.last.user.email != current_user.email %>
-                  <td class="text-center">返信がありました</td>
+                  <td class="text-center">返信がありました!</td>
               <% end %>
             <% end %>
         </tr>
