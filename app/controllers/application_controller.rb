@@ -4,15 +4,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :signed_in?, :is_admin?
 
-  def user_now
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
   private
 
     # ログイン後のリダイレクト先
     def after_sign_in_path_for(resource_or_scope)
       if current_user.admin?
-        admin_root_path
+        posts_path
       else
         home_user_page_path
       end

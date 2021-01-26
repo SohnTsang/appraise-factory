@@ -4,6 +4,9 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
+      if @comment.user_id != current_user.admin
+        @post.update(read: false)
+      end
       redirect_to request.referer
     else
       @post_new = Post.new
@@ -22,6 +25,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:comment)
+    params.require(:comment).permit(:comment, :post_id)
   end
 end

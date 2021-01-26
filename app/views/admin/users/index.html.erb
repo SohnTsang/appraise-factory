@@ -18,7 +18,7 @@
         <tr>
             <th><%= post.category %></th>
             <td><%= post.created_at.to_s(:datetime_base) %></td>
-            <td><%= post.updated_at.to_s(:datetime_base) %></td>
+            <td><%= comment.updated_at.to_s(:datetime_base) %></td>
             <td><%= link_to '詳細', post, id: "detail-" + post.id.to_s, class: 'btn btn-outline-info' %></td>
         </tr>
       <% end %>

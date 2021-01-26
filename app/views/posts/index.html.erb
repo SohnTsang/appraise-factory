@@ -7,8 +7,9 @@
   <thead class="bg-info text-light">
     <tr>
       <th scope="col" style="width: 100px">類別</th>
-      <th scope="col">送信日</th>
+      <th scope="col">受信日</th>
       <th scope="col">更新日時</th>
+      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -17,8 +18,19 @@
         <tr>
             <th><%= post.category %></th>
             <td><%= post.created_at.to_s(:datetime_base) %></td>
-            <td><%= post.updated_at.to_s(:datetime_base) %></td>
-            <td><%= link_to '詳細', post, id: "detail-" + post.id.to_s, class: 'btn btn-outline-info' %></td>
+            <% if post.comments.exists? %>
+              <td><%= post.comments.last.updated_at.to_s(:datetime_base)  %></td>
+            <% else %>
+              <td><%= post.updated_at.to_s(:datetime_base)  %></td>
+            <% end %>
+              <td><%= link_to '詳細', post, id: "detail-" + post.id.to_s, class: 'btn btn-outline-info' %></td>
+            <% if current_user.admin? %>
+              <td><%= post.read ? '既読' : '未読' %></td>
+            <% else %>
+              <% if post.comments.exists? && post.comments.last.user.email != current_user.email %>
+                  <td class="text-center">返信がありました</td>
+              <% end %>
+            <% end %>
         </tr>
       <% end %>
   </tbody>

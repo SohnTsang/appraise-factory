@@ -5,31 +5,36 @@ class PostsController < ApplicationController
     else
       @posts = Post.where(:email => current_user.email)
     end
+
   end
 
   def new
-
     @post = Post.new
     @user = current_user.email
   end
 
-
-
   def create
-    Post.create(post_params)
-    redirect_to posts_path
-
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to posts_path
+    else
+      redirect_to posts_path
+    end
   end
 
   def show
     @post = Post.find(params[:id])
+    if current_user.admin?
+      @post.update(read: true)
+    end
     @comment = Comment.new
     @comments = @post.comments
   end
 
   def edit
     @post = Post.find(params[:id])
-end
+  end
 
   def update
       post = Post.find(params[:id])
@@ -41,8 +46,9 @@ end
   end
 
   def destroy
-      post = Post.find(params[:id])
-      post.delete
+      @Post = Post.find_by(id: params[:id])
+      @Post.destroy
+
 
       # 投稿一覧へリダイレクト
       redirect_to posts_path
@@ -51,6 +57,6 @@ end
   private
     # paramsから欲しいデータのみ抽出
   def post_params
-      params.require(:post).permit(:email, :content, :category)
+      params.require(:post).permit(:email, :content, :category, :read)
   end
 end

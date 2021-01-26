@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/request'
   get 'users/recommendation'
+  post "posts/:id/destroy" => "posts#destroy"
 
 
   root to: 'home#index'
