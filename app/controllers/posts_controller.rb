@@ -15,6 +15,7 @@ class PostsController < ApplicationController
   def confirm
     @post = Post.find_or_initialize_by(id: params[:id])
     @post.assign_attributes(post_params)
+    @path = params[:path]
   end
 
   def create

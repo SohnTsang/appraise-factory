@@ -22,7 +22,7 @@
       </small>
   <% end %>
 </div> -->
-
+<% if @path != "確認画面へ" %>
 <div class="col text-center m-auto" style="width:60%;">
   <h4 class="mb-3">査定依頼</h4>
   <%= form_with model: @post, local: true do |f| %>
@@ -82,6 +82,7 @@
       </div>
 
       <div class="actions">
+        <%= link_to '戻る', 'javascript:history.back()' %>
         <%= f.submit '送信する', class: 'btn btn-info btn-block' %>
       </div>
       <small id="submit-tip" class="form-text text-muted">
@@ -89,3 +90,63 @@
       </small>
   <% end %>
 </div>
+<% else %>
+  <div class="col text-center m-auto" style="width:70%;">
+    <h4 class="mb-3">物件紹介</h4>
+    <%= form_with model: @post, local: true do |f| %>
+        <div class="form-group">
+            <%= f.label :category, 'カテゴリー' %>
+            <%= f.text_field :category, required: true, class: 'form-control', value: "物件紹介", :readonly => true %>
+        </div>
+        <div class="form-group">
+            <%= f.label :email, 'メールアドレス' %>
+            <%= f.text_field :email, required: true, class: 'form-control', value: current_user.email, :readonly => true %>
+        </div>
+
+        <div class="form-group row">
+            <%= f.label :city, '市区町村名', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.text_field :city, class: 'form-control', :readonly => true %>
+            </div>
+            <%= f.label :station, '沿線・駅名', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.text_field :station, class: 'form-control', :readonly => true %>
+            </div>
+            <small>いずれか入力</small>
+        </div>
+
+        <div class="form-group row">
+            <%= f.label :size, '広さ（m2）', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.text_field :size, class: 'form-control', :readonly => true %>
+            </div>
+            <%= f.label :floor_plan, '間取り', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.text_field :floor_plan, class: 'form-control', :readonly => true %>
+            </div>
+            <small>いずれか入力</small>
+        </div>
+        <div class="form-group row">
+            <%= f.label :budget, '予算', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.number_field :budget, class: 'form-control', :readonly => true %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :content, 'その他', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.number_field :content, class: 'form-control', :readonly => true %>
+            </div>
+        </div>
+        <div class="actions">
+          <%= link_to '戻る', 'javascript:history.back()' %>
+          <%= f.submit '送信する', class: 'btn btn-info btn-block'%>
+          <%= f.hidden_field :path, :value => "recommendation" %>
+        </div>
+        <small id="submit-tip" class="form-text text-muted">
+            送信する前に内容を見直してください
+        </small>
+    <% end %>
+
+  </div>
+<% end %>

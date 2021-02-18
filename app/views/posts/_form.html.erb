@@ -1,3 +1,4 @@
+
 <% if params[:path] == 'form' %>
   <div class="col text-center m-auto" style="width:60%;">
     <h4 class="mb-3">査定依頼</h4>
@@ -78,15 +79,43 @@
             <%= f.text_field :email, required: true, class: 'form-control', value: current_user.email, :readonly => true %>
         </div>
 
-        <div class="form-group">
-            <%= f.label :content, '物件条件' %>
-            <%= f.text_area :content, class: 'form-control', rows:10 %>
-            <small id=content-tip" class="form-text text-muted">
-                物件条件を入力してください。
-            </small>
+        <div class="form-group row">
+            <%= f.label :city, '市区町村名', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.text_field :city, class: 'form-control' %>
+            </div>
+            <%= f.label :station, '沿線・駅名', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.text_field :station, class: 'form-control' %>
+            </div>
+            <small>いずれか入力</small>
+        </div>
+
+        <div class="form-group row">
+            <%= f.label :size, '広さ（m2）', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.text_field :size, class: 'form-control' %>
+            </div>
+            <%= f.label :floor_plan, '間取り', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.text_field :floor_plan, class: 'form-control' %>
+            </div>
+            <small>いずれか入力</small>
+        </div>
+        <div class="form-group row">
+            <%= f.label :budget, '予算', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.number_field :budget, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :content, 'その他', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.number_field :content, class: 'form-control' %>
+            </div>
         </div>
         <div class="actions">
-          <%= f.submit '確認画面へ', class: 'btn btn-info btn-block' %>
+          <%= f.submit '確認画面へ', class: 'btn btn-info btn-block', name: 'path', value:'確認画面へ' %>
         </div>
         <small id="submit-tip" class="form-text text-muted">
             送信する前に内容を見直してください
