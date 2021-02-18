@@ -1,25 +1,96 @@
-<div class="col text-center m-auto" style="width:70%;">
-  <h4 class="mb-3">査定依頼</h4>
-  <%= form_for @post do |f| %>
-      <div class="form-group">
-          <%= f.label :category, 'カテゴリー' %>
-          <%= f.text_field :category, required: true, class: 'form-control', value: "査定依頼", :readonly => true %>
-      </div>
-      <div class="form-group">
-          <%= f.label :email, 'メールアドレス' %>
-          <%= f.text_field :email, required: true, class: 'form-control', value: @user, :readonly => true %>
-      </div>
+<% if params[:path] == 'form' %>
+  <div class="col text-center m-auto" style="width:60%;">
+    <h4 class="mb-3">査定依頼</h4>
+    <%= form_with(model: @post, local: true, url: { action: :confirm }) do |f| %>
+        <div class="form-group row">
+            <%= f.label :category, 'カテゴリー', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.text_field :category, required: true, class: 'form-control', value: "査定依頼", :readonly => true %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :email, 'メールアドレス', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.text_field :email, required: true, class: 'form-control', value: current_user.email, :readonly => true %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :condo_name, 'マンション名', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.text_field :condo_name, required: true, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :price, '販売価格', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.number_field :price, required: true, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :size, '専有面積', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.number_field :size, required: true, class: 'form-control'%>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :floor, '所在階', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.number_field :floor, class: 'form-control'%>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :storey, 'マンション階数', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.number_field :storey, class: 'form-control'%>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :age, '築年月', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.number_field :age, class: 'form-control'%>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :total_unit, '総戸数', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+              <%= f.number_field :total_unit, class: 'form-control'%>
+            </div>
+        </div>
 
-      <div class="form-group">
-          <%= f.label :content, '依頼内容' %>
-          <%= f.text_area :content, class: 'form-control', rows:10 %>
-          <small id=content-tip" class="form-text text-muted">
-              依頼内容を入力してください。
-          </small>
-      </div>
-      <%= f.submit '送信', class: 'btn btn-info btn-block' %>
-      <small id="submit-tip" class="form-text text-muted">
-          送信する前に内容を見直してください
-      </small>
-  <% end %>
-</div>
+        <div class="actions">
+          <%= f.submit '確認画面へ', class: 'btn btn-info btn-block' %>
+        </div>
+        <small id="submit-tip" class="form-text text-muted">
+            送信する前に内容を見直してください
+        </small>
+    <% end %>
+  </div>
+<% else %>
+  <div class="col text-center m-auto" style="width:70%;">
+    <h4 class="mb-3">物件紹介</h4>
+    <%= form_with(model: @post, local: true, url: {action: 'confirm'}) do |f| %>
+        <div class="form-group">
+            <%= f.label :category, 'カテゴリー' %>
+            <%= f.text_field :category, required: true, class: 'form-control', value: "物件紹介", :readonly => true %>
+        </div>
+        <div class="form-group">
+            <%= f.label :email, 'メールアドレス' %>
+            <%= f.text_field :email, required: true, class: 'form-control', value: current_user.email, :readonly => true %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :content, '物件条件' %>
+            <%= f.text_area :content, class: 'form-control', rows:10 %>
+            <small id=content-tip" class="form-text text-muted">
+                物件条件を入力してください。
+            </small>
+        </div>
+        <div class="actions">
+          <%= f.submit '確認画面へ', class: 'btn btn-info btn-block' %>
+        </div>
+        <small id="submit-tip" class="form-text text-muted">
+            送信する前に内容を見直してください
+        </small>
+    <% end %>
+  </div>
+<% end %>

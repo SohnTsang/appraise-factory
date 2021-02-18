@@ -7,7 +7,12 @@
   <thead class="bg-info text-light">
     <tr>
       <th scope="col" style="width: 100px">類別</th>
-      <th scope="col">受信日</th>
+      <% if current_user.admin? %>
+        <th scope="col">お客様</th>
+        <th scope="col">受信日</th>
+      <% else %>
+        <th scope="col">送信日</th>
+      <% end %>
       <th scope="col">更新日時</th>
       <th></th>
       <th></th>
@@ -17,18 +22,22 @@
       <% @posts.each do |post| %>
         <tr>
             <th><%= post.category %></th>
+            <th><%= post.email %></th>
             <td><%= post.created_at.to_s(:datetime_base) %></td>
             <% if post.comments.exists? %>
               <td><%= post.comments.last.updated_at.to_s(:datetime_base)  %></td>
             <% else %>
-              <td><%= post.updated_at.to_s(:datetime_base)  %></td>
+              <td><%= post.created_at.to_s(:datetime_base)  %></td>
             <% end %>
               <td><%= link_to '詳細', post, id: "detail-" + post.id.to_s, class: 'btn btn-outline-info' %></td>
             <% if current_user.admin? %>
               <td><%= post.read ? '既読' : '未読' %></td>
+              <td><%= post.reply ? '返信済み' : '未返信' %></td>
             <% else %>
               <% if post.comments.exists? && post.comments.last.user.email != current_user.email %>
-                  <td class="text-center">返信がありました!</td>
+                  <% if post.readforclients == false %>
+                    <td class="text-center">返信がありました!</td>
+                  <% end %>
               <% end %>
             <% end %>
         </tr>

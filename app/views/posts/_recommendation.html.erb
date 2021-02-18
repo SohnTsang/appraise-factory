@@ -1,13 +1,14 @@
+
 <div class="col text-center m-auto" style="width:70%;">
   <h4 class="mb-3">物件紹介</h4>
-  <%= form_for @post do |f| %>
+  <%= form_with(model: @post, local: true, url: {action: 'confirm'}) do |f| %>
       <div class="form-group">
           <%= f.label :category, 'カテゴリー' %>
           <%= f.text_field :category, required: true, class: 'form-control', value: "物件紹介", :readonly => true %>
       </div>
       <div class="form-group">
           <%= f.label :email, 'メールアドレス' %>
-          <%= f.text_field :email, required: true, class: 'form-control', value: @user, :readonly => true %>
+          <%= f.text_field :email, required: true, class: 'form-control', value: current_user.email, :readonly => true %>
       </div>
 
       <div class="form-group">
@@ -17,7 +18,9 @@
               物件条件を入力してください。
           </small>
       </div>
-      <%= f.submit '送信', class: 'btn btn-info btn-block' %>
+      <div class="actions">
+        <%= f.submit '確認画面へ', class: 'btn btn-info btn-block' %>
+      </div>
       <small id="submit-tip" class="form-text text-muted">
           送信する前に内容を見直してください
       </small>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_26_102444) do
+ActiveRecord::Schema.define(version: 2021_02_12_111603) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(version: 2021_01_26_102444) do
     t.string "email"
     t.string "category"
     t.boolean "read"
+    t.boolean "readforclients", default: false
+    t.boolean "reply", default: false
+    t.string "condo_name"
+    t.integer "price"
+    t.integer "size"
+    t.integer "floor"
+    t.integer "storey"
+    t.integer "age"
+    t.integer "total_unit"
+    t.string "city"
+    t.string "station"
+    t.integer "budget"
+    t.string "floor_plan"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -42,6 +55,20 @@ ActiveRecord::Schema.define(version: 2021_01_26_102444) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_reads_on_post_id"
     t.index ["user_id"], name: "index_reads_on_user_id"
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "category"
+    t.boolean "read", default: false
+    t.boolean "readforclients", default: false
+    t.boolean "reply", default: false
+    t.text "content"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_recommendations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,4 +93,5 @@ ActiveRecord::Schema.define(version: 2021_01_26_102444) do
   add_foreign_key "posts", "users"
   add_foreign_key "reads", "posts"
   add_foreign_key "reads", "users"
+  add_foreign_key "recommendations", "users"
 end

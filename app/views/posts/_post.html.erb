@@ -3,15 +3,29 @@
       <h4 class="inline-block"><%= @post.category %></h4>
       <div class="text-right" style="margin-inline-start: auto">
         <%= link_to '編集', edit_post_path(@post), class: "btn btn-outline-light" %>
-        <%= link_to("/posts/#{@post.id}/destroy",{method:"post",data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"}}) do %>
+        <%= link_to("/posts/#{@post.id}/destroy",{method: "post", data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"}}) do %>
              <button type="button" class="btn btn-outline-light">
                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
              </button>
              <% end %>
+
       </div>
   </div>
   <div class="card-body">
-      <p class="card-text"><%= simple_format(@post.content) %></p>
+    <h5>マンション名</h5>
+    <p class="card-text"><%= simple_format(@post.condo_name) %></p>
+    <h5>販売価格</h5>
+    <p class="card-text"><%= @post.price %> 円</p>
+    <h5>専有面積</h5>
+    <p class="card-text"><%= @post.size %> m2</p>
+    <h5>所在階</h5>
+    <p class="card-text"><%= @post.floor %> 階</p>
+    <h5>マンション階数</h5>
+    <p class="card-text"><%= @post.storey %> 階建て</p>
+    <h5>築年月</h5>
+    <p class="card-text"><%= @post.age %> 年</p>
+    <h5>総戸数</h5>
+    <p class="card-text"><%= @post.total_unit %> 戸</p>
   </div>
   <div class="card-footer">
       <p class="text-left font-weight-bold mr-10"><%= @post.email %></p>

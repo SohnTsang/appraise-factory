@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     if current_user.admin?
-      @posts = Post.all
+      @posts = Post.where(:read => false).order(updated_at: :desc) + Post.where(:read => true, :reply => false).order(updated_at: :desc) + Post.where(:reply => true).order(updated_at: :desc)
     else
       @posts = Post.where(:email => current_user.email)
     end
@@ -10,17 +10,35 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @user = current_user.email
+  end
+
+  def confirm
+    @post = Post.find_or_initialize_by(id: params[:id])
+    @post.assign_attributes(post_params)
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
+    # if @post.save
+    #   @post.update(read: false)
+    #   @post.update(readforclients: false)
+    #   @post.update(reply: false)
+    #   SampleMailer.send_when_post_create(current_user).deliver
+    #   redirect_to posts_path
+    # else
+    #   redirect_to posts_path
+    # end
+    if params[:back]
+      render 'new'
+    elsif @post.save
       @post.update(read: false)
-      redirect_to posts_path
+      @post.update(readforclients: false)
+      @post.update(reply: false)
+      SampleMailer.send_when_post_create(current_user).deliver
+      redirect_to @post
     else
-      redirect_to posts_path
+      render 'new'
     end
   end
 
@@ -28,6 +46,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if current_user.admin?
       @post.update(read: true)
+    else
+      @post.update(readforclients: true)
     end
     @comment = Comment.new
     @comments = @post.comments
@@ -47,17 +67,17 @@ class PostsController < ApplicationController
   end
 
   def destroy
-      @Post = Post.find_by(id: params[:id])
-      @Post.destroy
+    @post = Post.find_by(id: params[:id])
+    @post.destroy
 
 
       # 投稿一覧へリダイレクト
-      redirect_to posts_path
-    end
+    redirect_to posts_path
+  end
 
   private
     # paramsから欲しいデータのみ抽出
   def post_params
-      params.require(:post).permit(:email, :content, :category, :read)
+      params.require(:post).permit(:email, :content, :category, :read, :readforclients, :reply, :condo_name, :price, :size, :floor, :storey, :age, :total_unit, :city, :station, :budget, :floor_plan)
   end
 end

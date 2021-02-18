@@ -6,7 +6,17 @@ class CommentsController < ApplicationController
     if @comment.save
       if @comment.user_id != current_user.admin
         @post.update(read: false)
+        @post.update(reply: false)
+        SampleMailer.send_when_client_reply(current_user).deliver
+      else
+        @post.update(readforclients: false)
       end
+      if current_user.admin?
+        @post.update(reply: true)
+        @post.update(readforclients: false)
+        SampleMailer.send_when_admin_reply(current_user).deliver
+      end
+
       redirect_to request.referer
     else
       @post_new = Post.new

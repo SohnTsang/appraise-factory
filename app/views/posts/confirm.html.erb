@@ -1,10 +1,31 @@
 <%= render 'layouts/login_header' %>
 
-<div class="d-flex m-auto" style="width:60%;">
-  <h1>編集</h1>
-</div>
+<!-- <div class="col text-center m-auto" style="width:60%;">
+  <h4 class="mb-3 mt-5"><%= @post.category %></h4>
+  <%= form_with model: @post, local: true do |f| %>
+      <div class="form-group">
+          <%= f.label :email, 'メールアドレス' %>
+          <p><%= @post.email %></p>
+      </div>
+
+      <div class="form-group">
+          <%= f.label :content, '依頼内容' %>
+          <p><%= @post.content %></p>
+
+      </div>
+      <div class="actions">
+        <%= link_to '戻る', 'javascript:history.back()' %>
+        <%= f.submit '送信する' %>
+      </div>
+      <small id="submit-tip" class="form-text text-muted">
+          送信する前に内容を見直してください
+      </small>
+  <% end %>
+</div> -->
+
 <div class="col text-center m-auto" style="width:60%;">
-    <%= form_for @post do |f| %>
+  <h4 class="mb-3">査定依頼</h4>
+  <%= form_with model: @post, local: true do |f| %>
       <div class="form-group row">
           <%= f.label :category, 'カテゴリー', class: 'col-sm-2 col-form-label' %>
           <div class="col-sm-10">
@@ -20,50 +41,51 @@
       <div class="form-group row">
           <%= f.label :condo_name, 'マンション名', class: 'col-sm-2 col-form-label' %>
           <div class="col-sm-10">
-            <%= f.text_field :condo_name, required: true, class: 'form-control', required: true %>
+            <%= f.text_field :condo_name, required: true, class: 'form-control', required: true, :readonly => true %>
           </div>
       </div>
       <div class="form-group row">
           <%= f.label :price, '販売価格', class: 'col-sm-2 col-form-label' %>
           <div class="col-sm-10">
-            <%= f.number_field :price, required: true, class: 'form-control', required: true %>
+            <%= f.text_field :price, required: true, class: 'form-control', required: true, :readonly => true %>
           </div>
       </div>
       <div class="form-group row">
           <%= f.label :size, '専有面積', class: 'col-sm-2 col-form-label' %>
           <div class="col-sm-10">
-            <%= f.number_field :size, required: true, class: 'form-control', required: true %>
+            <%= f.text_field :size, required: true, class: 'form-control', required: true, :readonly => true %>
           </div>
       </div>
       <div class="form-group row">
           <%= f.label :floor, '所在階', class: 'col-sm-2 col-form-label' %>
           <div class="col-sm-10">
-            <%= f.number_field :floor, class: 'form-control'%>
+            <%= f.text_field :floor, required: true, class: 'form-control', :readonly => true%>
           </div>
       </div>
       <div class="form-group row">
           <%= f.label :storey, 'マンション階数', class: 'col-sm-2 col-form-label' %>
           <div class="col-sm-10">
-            <%= f.number_field :storey, class: 'form-control'%>
+            <%= f.text_field :storey, required: true, class: 'form-control', :readonly => true%>
           </div>
       </div>
       <div class="form-group row">
           <%= f.label :age, '築年月', class: 'col-sm-2 col-form-label' %>
           <div class="col-sm-10">
-            <%= f.number_field :age, class: 'form-control'%>
+            <%= f.text_field :age, required: true, class: 'form-control', :readonly => true%>
           </div>
       </div>
       <div class="form-group row">
           <%= f.label :total_unit, '総戸数', class: 'col-sm-2 col-form-label' %>
           <div class="col-sm-10">
-            <%= f.number_field :total_unit, class: 'form-control'%>
+            <%= f.text_field :total_unit, required: true, class: 'form-control', :readonly => true%>
           </div>
       </div>
 
       <div class="actions">
-            <%= f.submit '送信', class: 'btn btn-info btn-block', data: { confirm: "内容は間違いないでしょうか？"} %>
-            <small id="submit-tip" class="form-text text-muted">
-                送信する前に内容を見直してください
-            </small>
-        <% end %>
+        <%= f.submit '送信する', class: 'btn btn-info btn-block' %>
       </div>
+      <small id="submit-tip" class="form-text text-muted">
+          送信する前に内容を見直してください
+      </small>
+  <% end %>
+</div>
