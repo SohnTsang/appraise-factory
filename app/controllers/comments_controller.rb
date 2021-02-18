@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
       if current_user.admin?
         @post.update(reply: true)
         @post.update(readforclients: false)
-        SampleMailer.send_when_admin_reply(current_user).deliver
+        SampleMailer.send_when_admin_reply(@post.user).deliver
       end
 
       redirect_to request.referer
