@@ -12,10 +12,10 @@
   <div class="text-right" style="margin-inline-start: auto">
     <%= link_to '編集', edit_post_path(@post), class: "btn text-color " %>
     <%= link_to("/posts/#{@post.id}/destroy",{method: "post", data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"}}) do %>
-         <button type="button" class="btn text-color mr-2">
+         <button type="button" class=" delete btn">
            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
          </button>
-         <% end %>
+    <% end %>
 
   </div>
     <div class="card-body text-center">
@@ -53,7 +53,7 @@
               </tr>
               <tr>
                   <th class=" h5 p-2">築年月</th>
-                  <td  class='p-2'><%= @post.age %>&ensp;年</td>
+                  <td  class='p-2'><%= @post.age.strftime('%Y年%m月') %>&ensp;</td>
               </tr>
               <tr>
                   <th class=" h5 p-2">総戸数</th>
@@ -176,3 +176,13 @@
 
 </div>
 </div>
+<style>
+  .delete{
+    color:#1da0cd;
+    text-decoration:none;
+  }
+  .delete:hover{
+    background-color:#1da0cd;
+    color:white;
+  }
+</style>
