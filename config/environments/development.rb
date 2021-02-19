@@ -48,12 +48,21 @@ Rails.application.configure do
   #   :authentication => :plain,
   #   :enable_starttls_auto => true
   # }
+  # config.action_mailer.smtp_settings = {
+  #   :address => "smtp.gmail.com",
+  #   :port => 587,
+  #   :domain => 'gmail.com',
+  #   :user_name => 'kawasaki503@gmail.com',
+  #   :password => "tebipscrewgtlacb",
+  #   :authentication => :plain,
+  #   :enable_starttls_auto => true
+  # }
   config.action_mailer.smtp_settings = {
     :address => "smtp.gmail.com",
     :port => 587,
     :domain => 'gmail.com',
-    :user_name => 'kawasaki503@gmail.com',
-    :password => "tebipscrewgtlacb",
+    :user_name => 'noreply.appraise@gmail.com',
+    :password => "gglbtijlvhjkyozo",
     :authentication => :plain,
     :enable_starttls_auto => true
   }

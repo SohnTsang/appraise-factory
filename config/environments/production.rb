@@ -74,12 +74,11 @@ Rails.application.configure do
   #   :enable_starttls_auto => true
   # }
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.gmail.com',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => "kawasaki503@gmail.com",
-    :password       => "tebipscrewgtlacb",
-    :domain         => 'gmail.com',
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => 'gmail.com',
+    :user_name => 'noreply.appraise@gmail.com',
+    :password => "gglbtijlvhjkyozo",
     :authentication => :plain,
     :enable_starttls_auto => true
   }
