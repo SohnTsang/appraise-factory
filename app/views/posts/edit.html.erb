@@ -3,6 +3,7 @@
 <div class="d-flex m-auto" style="width:60%;">
   <h1>編集</h1>
 </div>
+<% if @post.category == '査定依頼' %>
 <div class="col text-center m-auto" style="width:60%;">
     <%= form_for @post do |f| %>
       <div class="form-group row">
@@ -61,9 +62,71 @@
       </div>
 
       <div class="actions">
-            <%= f.submit '送信', class: 'btn btn-info btn-block', data: { confirm: "内容は間違いないでしょうか？"} %>
+            <%= f.submit '送信', class: 'btn btn-info btn-flex', data: { confirm: "内容は間違いないでしょうか？"} %>
             <small id="submit-tip" class="form-text text-muted">
                 送信する前に内容を見直してください
             </small>
         <% end %>
       </div>
+</div>
+<% else %>
+<div class="col text-center m-auto" style="width:70%;">
+  <h4 class="mb-3">物件紹介</h4>
+  <%= form_for @post do |f| %>
+  <div class="form-group row">
+      <%= f.label :category, 'カテゴリー', class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :category, required: true, class: 'form-control', value: "物件紹介", :readonly => true %>
+      </div>
+  </div>
+  <div class="form-group row">
+      <%= f.label :email, 'メールアドレス', class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :email, required: true, class: 'form-control', value: current_user.email, :readonly => true %>
+      </div>
+  </div>
+
+      <div class="form-group row">
+          <%= f.label :city, '市区町村名', class: 'col-sm-2 col-form-label' %>
+          <div class="col-sm-10">
+            <%= f.text_field :city, class: 'form-control' %>
+          </div>
+          <%= f.label :station, '沿線・駅名', class: 'col-sm-2 col-form-label' %>
+          <div class="col-sm-10">
+            <%= f.text_field :station, class: 'form-control' %>
+          </div>
+          <small style="color:red">必ずいずれかを入力してください</small>
+      </div>
+
+      <div class="form-group row">
+          <%= f.label :size, '広さ（m2）', class: 'col-sm-2 col-form-label' %>
+          <div class="col-sm-10">
+            <%= f.text_field :size, class: 'form-control' %>
+          </div>
+          <%= f.label :floor_plan, '間取り', class: 'col-sm-2 col-form-label' %>
+          <div class="col-sm-10">
+            <%= f.text_field :floor_plan, class: 'form-control' %>
+          </div>
+          <small style="color:red">必ずいずれかを入力してください</small>
+      </div>
+      <div class="form-group row">
+          <%= f.label :budget, '予算', class: 'col-sm-2 col-form-label' %>
+          <div class="col-sm-10">
+            <%= f.number_field :budget, class: 'form-control' %>
+          </div>
+      </div>
+      <div class="form-group row">
+          <%= f.label :content, 'その他', class: 'col-sm-2 col-form-label' %>
+          <div class="col-sm-10">
+            <%= f.number_field :content, class: 'form-control' %>
+          </div>
+      </div>
+      <div class="actions">
+            <%= f.submit '送信', class: 'btn btn-info btn-flex', data: { confirm: "内容は間違いないでしょうか？"} %>
+            <small id="submit-tip" class="form-text text-muted">
+                送信する前に内容を見直してください
+            </small>
+        <% end %>
+      </div>
+</div>
+<% end %>

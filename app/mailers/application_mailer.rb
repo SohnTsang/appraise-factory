@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
   default from: 'apprAIse-factory',
-          reply_to: "tsangkaho12@gmail.com"
+          reply_to: "nonreply"
   layout 'mailer'
 end

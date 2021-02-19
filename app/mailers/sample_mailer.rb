@@ -8,21 +8,25 @@ class SampleMailer < ApplicationMailer
   def send_when_post_create(user)
     @user = user
 
-    mail to: 'tsangkaho12@gmail.com',
+    mail to: 'kawasaki503@gmail.com',
+
          subject: '新しい依頼がありました。'
   end
   def send_when_client_reply(user)
     @user = user
 
-    mail to: 'tsangkaho12@gmail.com',
-         subject: 'お客様から返信がありました。'
+    if user.email != "appraise-factory@gmail.com"
+      mail to: 'kawasaki503@gmail.com',
+
+           subject: 'お客様から返信がありました。'
+    end
   end
 
   def send_when_admin_reply(user)
     @user = user
-
     mail to: user.email,
          subject: 'お客様の依頼に返信がありました。'
+
   end
 
 end

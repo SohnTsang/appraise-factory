@@ -1,38 +1,54 @@
+
 <% if current_user.admin? %>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">apprAIse-factory</a>
-    
-    <div class="collapse navbar-collapse" id="navbarForm">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item mr-2">
-          Admin
+  <nav class="navbar navbar-expand-sm navbar-light bg-white mb-5 pt-2 shadow-sm rounded sticky-top">
+    <%= link_to image_tag("logo.png", :alt => "apprAIse-factory", :size =>'200x75'), posts_path %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item m-auto">
+          Admin&nbsp;&nbsp;
         </li>
         <li class="nav-item m-auto">
-          <%= link_to 'お問合せ一覧', posts_path, class: 'text-info mr-2' %>
+            <%= link_to 'お問合せ一覧', posts_path, class: 'text-color nav-link', style:"color:#1da0cd;" %>
+
         </li>
-        <li class="nav-item">
-          <%= link_to "ログアウト", destroy_user_session_path, :class=>" text-info mr-2" %>
+        <li class="nav-item m-auto">
+          <%= link_to "ログアウト", destroy_user_session_path, :class=>"text-color nav-link", :style=>"vertical-align: -webkit-baseline-middle; color:#1da0cd;" %>
         </li>
+
       </ul>
     </div>
   </nav>
 <% else %>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5 pt-2">
-    <%= link_to 'apprAIse-factory', home_user_page_path, class: 'h4', style:'text-decoration: none; color:black;' %>
-
-      <ul class="navbar-nav ml-auto" style="flex-direction: row;">
+<nav class="navbar navbar-expand-sm navbar-light bg-white mb-5 pt-2 shadow-sm rounded sticky-top">
+    <%= link_to image_tag("logo.png", :alt => "apprAIse-factory", :size =>'200x75'), home_user_page_path %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%# link_to 'apprAIse-factory', home_user_page_path, class: 'h4', style:'text-decoration: none; color:black;' %>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item m-auto">
           <%= link_to 'お客様ページ', home_user_page_path, class: 'btn btn-outline-info' %>
 
         </li>
         <li class="nav-item m-auto">
-            <%= link_to 'お問合せ一覧', posts_path, class: 'text-info ml-2 ' %>
+            <%= link_to 'お問合せ一覧', posts_path, class: 'text-color nav-link', style:"color:#1da0cd;" %>
 
         </li>
-        <li class="nav-item ml-2">
-          <%= link_to "ログアウト", destroy_user_session_path, :class=>"text-info ml-2", :style=>"vertical-align: -webkit-baseline-middle;" %>
+        <li class="nav-item m-auto">
+          <%= link_to "ログアウト", destroy_user_session_path, :class=>"text-color nav-link", :style=>"vertical-align: -webkit-baseline-middle; color:#1da0cd;" %>
         </li>
 
       </ul>
+    </div>
   </nav>
 <% end %>
+<style>
+  a:hover {
+    color: white !important;
+  }
+</style>

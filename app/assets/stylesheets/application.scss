@@ -16,5 +16,51 @@
  @import "bootstrap";
 
 *{
-  
+
+}
+.head-border {
+    display: flex;
+    align-items: center;
+    color: #1da0cd;
+}
+
+.head-border:before,
+.head-border:after {
+    content: "";
+    height: 1px;
+    flex-grow: 1;
+    background-color: #1da0cd;
+}
+
+.head-border:before {
+    margin-right: 0.5rem;
+}
+
+.head-border:after {
+    margin-left: 0.5rem;
+}
+
+.text-color{
+  color: #1da0cd;
+}
+.bg-color2{
+  background-color: #1da0cd;
+}
+.bordertop-color{
+  border-top: solid 0.3rem #1da0cd;
+}
+.bordertop-color2{
+  border-top: solid 0.1rem #1da0cd;
+}
+.borderbottom-color2{
+  border-bottom: solid 0.1rem #1da0cd;
+}
+
+@media (max-width: 767.98px) {
+  .mx-w-100 {
+    max-width: 100% !important;
+  }
+}
+.required{
+  color:red;
 }

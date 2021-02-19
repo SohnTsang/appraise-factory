@@ -1,10 +1,10 @@
 <%= render 'layouts/login_header' %>
-<div class="d-flex align-items-center">
-    <h1>お問合せ一覧</h1>
+<div class="d-flex align-items-center  head-border mb-5">
+    <h2 class="r">お問合せ一覧</h2>
 
 </div>
-<table class="table table-bordered border-primary table-hover table-sm posts_table">
-  <thead class="bg-info text-light">
+<table class="table table-bordered border-primary table-hover table-sm posts_table container">
+  <thead class="bg-color2 text-light">
     <tr>
       <th scope="col" style="width: 100px">類別</th>
       <% if current_user.admin? %>
@@ -22,8 +22,10 @@
       <% @posts.each do |post| %>
         <tr>
             <th><%= post.category %></th>
-            <th><%= post.email %></th>
-            <td><%= post.created_at.to_s(:datetime_base) %></td>
+            <% if current_user.admin? %>
+              <th><%= post.email %></th>
+            <% end %>
+              <td><%= post.created_at.to_s(:datetime_base) %></td>
             <% if post.comments.exists? %>
               <td><%= post.comments.last.updated_at.to_s(:datetime_base)  %></td>
             <% else %>

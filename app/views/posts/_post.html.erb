@@ -1,77 +1,178 @@
-<div class="card">
-  <div class="card-header bg-info text-white d-flex">
-      <h4 class="inline-block"><%= @post.category %></h4>
-      <div class="text-right" style="margin-inline-start: auto">
-        <%= link_to '編集', edit_post_path(@post), class: "btn btn-outline-light" %>
-        <%= link_to("/posts/#{@post.id}/destroy",{method: "post", data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"}}) do %>
-             <button type="button" class="btn btn-outline-light">
-               <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
-             </button>
-             <% end %>
+<style>
 
-      </div>
+</style>
+<div class="container-fluid">
+
+  <div class="bg-white">
+
+      <h3 class="head-border text-color"><%= @post.category %></h3>
+
   </div>
   <% if @post.category == "査定依頼" %>
-    <div class="card-body">
-      <h5>マンション名</h5>
-      <p class="card-text"><%= simple_format(@post.condo_name) %></p>
-      <h5>販売価格</h5>
-      <p class="card-text"><%= @post.price %> 円</p>
-      <h5>専有面積</h5>
-      <p class="card-text"><%= @post.size %> m2</p>
-      <h5>所在階</h5>
-      <p class="card-text"><%= @post.floor %> 階</p>
-      <h5>マンション階数</h5>
-      <p class="card-text"><%= @post.storey %> 階建て</p>
-      <h5>築年月</h5>
-      <p class="card-text"><%= @post.age %> 年</p>
-      <h5>総戸数</h5>
-      <p class="card-text"><%= @post.total_unit %> 戸</p>
-    </div>
-    <div class="card-footer">
-        <p class="text-left font-weight-bold mr-10"><%= @post.email %></p>
-    </div>
-  <% else %>
-    <div class="card-body">
-      <h5>市区町村名</h5>
-      <p class="card-text"><%= @post.city %></p>
-      <h5>沿線・駅名</h5>
-      <p class="card-text"><%= @post.station %> 駅</p>
-      <h5>広さ（m2）</h5>
-      <p class="card-text"><%= @post.size %> m2</p>
-      <h5>間取り</h5>
-      <p class="card-text"><%= @post.floor_plan %></p>
-      <h5>予算</h5>
-      <p class="card-text"><%= @post.budget %> 円</p>
-      <h5>その他</h5>
-      <p class="card-text"><%= @post.content %> </p>
-    </div>
-    <div class="card-footer">
-        <p class="text-left font-weight-bold mr-10"><%= @post.email %></p>
-    </div>
-  <% end %>
-  <div class="card-header bg-info text-white d-flex">
-      <h4 class="inline-block">コメント</h4>
+  <div class="text-right" style="margin-inline-start: auto">
+    <%= link_to '編集', edit_post_path(@post), class: "btn text-color " %>
+    <%= link_to("/posts/#{@post.id}/destroy",{method: "post", data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"}}) do %>
+         <button type="button" class="btn text-color mr-2">
+           <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
+         </button>
+         <% end %>
+
   </div>
-  <div class="card-body">
+    <div class="card-body text-center">
+      <table class="m-auto col-sm-8 text-center table-responsive-xs" style="table-layout:fixed;">
+          <thead class="bordertop-color">
+              <tr>
+                  <th colspan="3" class=" h5 p-2">マンション名</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td  class='p-2'></td>
+                  <td  class='p-2'><%= simple_format(@post.condo_name) %></td>
+                  <td  class='p-2'></td>
+              </tr>
+          </tbody>
+      </table>
+      <table class="m-auto col-sm-8 text-center table-responsive-xs" style="table-layout:fixed;">
+          <thead class="bordertop-color2 borderbottom-color2">
+              <tr>
+                  <th class=" h5 p-2">販売価格</th>
+                  <td  class='p-2'><%= @post.price %>&ensp;円</td>
+              </tr>
+              <tr>
+                  <th class=" h5 p-2">専有面積</th>
+                  <td  class='p-2'><%= @post.size %>&ensp;m2</td>
+              </tr>
+              <tr>
+                  <th class=" h5 p-2">所在階</th>
+                  <td  class='p-2'><%= @post.floor %>&ensp;階</td>
+              </tr>
+              <tr>
+                  <th class=" h5 p-2">マンション階数</th>
+                  <td  class='p-2'><%= @post.storey %>&ensp;階建て</td>
+              </tr>
+              <tr>
+                  <th class=" h5 p-2">築年月</th>
+                  <td  class='p-2'><%= @post.age %>&ensp;年</td>
+              </tr>
+              <tr>
+                  <th class=" h5 p-2">総戸数</th>
+                  <td  class='p-2'><%= @post.total_unit %>&ensp;戸</td>
+              </tr>
+          </thead>
+      </table>
+
+      <div class="">
+          <p class="text-left font-weight-bold p-3">お客様メールアドレス：<%= @post.email %></p>
+
+      </div>
+    </div>
+
+  <% else %>
+    <div class="text-right" style="margin-inline-start: auto">
+      <%= link_to '編集', edit_post_path(@post), class: "btn text-color " %>
+      <%= link_to("/posts/#{@post.id}/destroy",{method: "post", data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"}}) do %>
+           <button type="button" class="btn text-color mr-2">
+             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
+           </button>
+           <% end %>
+
+    </div>
+      <div class="card-body text-center">
+        <table class="m-auto col-sm-8 text-center table-responsive-xs" style="table-layout:fixed;">
+            <thead class="bordertop-color">
+                <tr>
+                    <th colspan="3" class=" h5 p-2">市区町村名</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td  class='p-2'></td>
+                    <td  class='p-2'><%= @post.city %></td>
+                    <td  class='p-2'></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="m-auto col-sm-8 text-center table-responsive-xs" style="table-layout:fixed;">
+            <thead class="bordertop-color2 borderbottom-color2">
+              <tr>
+                  <th class=" h5 p-2">市区町村名</th>
+                  <td  class='p-2'><%= @post.city %></td>
+              </tr>
+                <tr>
+                    <th class=" h5 p-2">沿線・駅名</th>
+                    <td  class='p-2'><%= @post.station %></td>
+                </tr>
+                <tr>
+                    <th class=" h5 p-2">広さ</th>
+                    <td  class='p-2'><%= @post.size %> m2</td>
+                </tr>
+                <tr>
+                    <th class=" h5 p-2">間取り</th>
+                    <td  class='p-2'><%= @post.floor_plan %></td>
+                </tr>
+                <tr>
+                    <th class=" h5 p-2">予算</th>
+                    <td  class='p-2'><%= @post.budget %>万円</td>
+                </tr>
+                <tr>
+                    <th class=" h5 p-2">その他</th>
+                    <td  class='p-2'><%= @post.content %></td>
+                </tr>
+            </thead>
+        </table>
+
+        <div class="">
+            <p class="text-left font-weight-bold p-3">お客様メールアドレス：<%= @post.email %></p>
+
+        </div>
+      </div>
+  <% end %>
+
+  <div class="bg-white">
+
+      <h3 class="head-border text-color">コメント</h3>
+
+  </div>
+  <div class="card-body w-100 m-auto">
       <% @comments.each do |comment| %>
-          <div class="card-body">
-            <%= comment.user.email %>
-            <p class="float-right"><%= comment.updated_at.to_s(:datetime_base) %></p>
-            <hr />
-            <%= comment.comment %>
-            <%= link_to "削除", post_comment_path(@post, comment), method: :delete, class:"float-right" %>
+          <div class="card-body borderbottom-color2 col-xs-10">
+            <div class="" style="display: inline-block; width:100%;">
+              <p class="float-left text-sm-left col-md-6">発信者：<%= comment.user.email %></p>
+              <p class="col-sm-6">送信日時：<%= comment.updated_at.to_s(:datetime_base) %></p>
+            </div>
+            <div class="mb-2 col-xs-10 p-3">
+              <% if comment.files.attached? %>
+                <% comment.files.each do |file| %>
+                <%= link_to image_tag("file.png", :alt => "ファイルがあります", :size =>'30x30'), rails_blob_path(file, disposition: 'attachment') %>
+                <br /><br />
+
+                <% end %>
+              <% end %>
+              <div class="">
+                <p class="text-break mw-100"><%= comment.comment%></p>
+                <%= link_to "削除", post_comment_path(@post, comment), method: :delete, class:"float-right text-color ", data: { confirm: "コメントを削除しますか？" }%>
+                <br />
+
+              </div>
+
+            </div>
+
           </div>
 
 
       <% end %>
   </div>
-  <div class="card-footer">
+  <div class="" style="background-color:#eef9fb;">
+  <div class="card-footer col-sm-10 m-auto text-center bg-transparent" style="border:none">
 
     <%= form_for [@post, @comment] do |f| %>
-      <%= f.text_area :comment, size:"40x5"%>
-      <%= f.submit '送信', class: "btn btn-outline-info", style:"vertical-align: text-bottom" %>
+      <%= f.text_area :comment, :rows => 5, style: 'width:80%;border:solid 2px #f0f0f0' %>
+      <%= f.file_field :files, multiple: true %>
+      <%= f.submit '送信', class: "btn  bg-color2 text-white" %>
     <% end %>
   </div>
 
+
+</div>
 </div>

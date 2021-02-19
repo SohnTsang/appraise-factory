@@ -15,6 +15,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 gem 'rexml'
+gem "aws-sdk-s3", require: false
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
