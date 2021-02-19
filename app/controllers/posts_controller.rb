@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   def index
     if current_user.admin?
       @posts = Post.where(:read => false).order(updated_at: :desc) + Post.where(:read => true, :reply => false).order(updated_at: :desc) + Post.where(:reply => true).order(updated_at: :desc)
@@ -44,14 +45,18 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    if current_user.admin?
-      @post.update(read: true)
+    if user_signed_in?
+      @post = Post.find(params[:id])
+      if current_user.admin?
+        @post.update(read: true)
+      else
+        @post.update(readforclients: true)
+      end
+      @comment = Comment.new
+      @comments = @post.comments
     else
-      @post.update(readforclients: true)
+      redirect_to home_index_path
     end
-    @comment = Comment.new
-    @comments = @post.comments
   end
 
   def edit
