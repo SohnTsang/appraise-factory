@@ -5,7 +5,7 @@ ruby '3.0.0'
 
 gem 'devise'
 gem 'bootstrap', '~> 4.5', '>= 4.5.2'
-gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
+# gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem "jquery-rails"
 gem "jquery-ui-rails"
 gem 'rails-i18n', '~> 6.0'
