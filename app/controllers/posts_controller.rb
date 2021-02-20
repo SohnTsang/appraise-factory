@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     if current_user.admin?
       @posts = Post.where(:read => false).order(updated_at: :desc) + Post.where(:read => true, :reply => false).order(updated_at: :desc) + Post.where(:reply => true).order(updated_at: :desc)
     else
-      @posts = Post.where(:email => current_user.email)
+      @posts = Post.where(:email => current_user.email).order(updated_at: :desc)
     end
 
   end
