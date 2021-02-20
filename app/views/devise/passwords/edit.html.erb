@@ -1,25 +1,43 @@
-<h2>Change your password</h2>
+<%= render "devise/shared/error_messages", resource: resource %>
+<body class="text-center container w-30">
+  <% if user_signed_in? %>
+    <h2 class="text-center mt-5">      <%= link_to "apprAIse-factory", home_user_page_path, :style=>"text-decoration:none;color:#1da0cd"  %></h2>
+  <% else %>
+    <h2 class="text-center mt-5">      <%= link_to "apprAIse-factory", home_index_path, :style=>"text-decoration:none;color:#1da0cd"  %></h2>
+  <% end %>
+  <div class=" justify-content-center jumbotron  bg-white">
+  <h4 class="mb-3">パスワード変更</h4>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+    <div class="field">
+      <% if @minimum_password_length %>
+          <small style="color:gray">(<%= @minimum_password_length %> 桁のパスワード)</small><br />
+      <% end %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password",:class => 'form-control pt-4 pb-4', placeholder:"新しいパスワード" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+    <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => 'form-control pt-4 pb-4', placeholder: "新しいパスワード再入力" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "パスワード変更", :class=>"btn w-100 mb-3 mt-3", :style=>"background-color:#1da0cd; color:white;" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
   </div>
+</body>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<style>
+  .w-30{
+    width:30%;
+  }
+  ul{
+    list-style: none;
+    padding: 0;
+    color:red;
+  }
+</style>
