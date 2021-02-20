@@ -7,14 +7,14 @@
       <%= link_to new_post_path(:path => "form"), :class => 'btn p-3 pl-5 pr-5 mb-3 inline-block', :style =>"font-size:1.6rem;width:300px; "  do %>
         <p>査定依頼</p>
 
-        <span class="border-top">Request for Assessment</span>
+        <span class="border-top" style="margin-top:-20px;">Request for Assessment</span>
       <% end %>
     </div>
     <div class="col-xs-10 text-center">
       <br />
       <%= link_to new_post_path(:path => "recommendation"), :class => 'btn p-3 pl-5 pr-5 mb-3 inline-block', :style =>"font-size:1.6rem;width:300px; "  do %>
         <p>物件紹介</p>
-        <span class="border-top">Recommendation</span>
+        <span class="border-top" style="margin-top:-20px;">Recommendation</span>
       <% end %>
     </div>
   </div>
@@ -27,8 +27,6 @@
   }
   span{
     display: block;
-    margin-top:-20px;
     font-size:15px;
-
   }
 </style>
