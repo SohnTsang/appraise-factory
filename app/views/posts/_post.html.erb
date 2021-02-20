@@ -11,12 +11,15 @@
   <% if @post.category == "査定依頼" %>
   <div class="text-right" style="margin-inline-start: auto">
     <%= link_to '編集', edit_post_path(@post), class: "btn text-color " %>
+    <% if current_user.admin? %>
+
     <%= link_to("/posts/#{@post.id}/destroy",{method: "post", data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"}}) do %>
          <button type="button" class=" delete btn">
-           <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
+             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
+
          </button>
     <% end %>
-
+<% end %>
   </div>
     <div class="card-body text-center">
       <table class="m-auto col-sm-8 text-center table-responsive-xs" style="table-layout:fixed;">
@@ -71,11 +74,14 @@
   <% else %>
     <div class="text-right" style="margin-inline-start: auto">
       <%= link_to '編集', edit_post_path(@post), class: "btn text-color " %>
-      <%= link_to("/posts/#{@post.id}/destroy",{method: "post", data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"}}) do %>
+      <% if current_user.admin? %>
+        <%= link_to("/posts/#{@post.id}/destroy",{method: "post", data: {confirm: "投稿記事を削除しますか？", cancel: "キャンセル", commit: "削除する", title: "削除の確認"}}) do %>
+
            <button type="button" class="btn text-color mr-2">
              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
            </button>
-           <% end %>
+          <% end %>
+      <% end %>
 
     </div>
       <div class="card-body text-center">
@@ -155,7 +161,9 @@
               <% end %>
               <div class="">
                 <p class="text-break mw-100"><%= comment.comment%></p>
+                <% if current_user.admin? %>
                 <%= link_to "削除", post_comment_path(@post, comment), method: :delete, class:"float-right text-color ", data: { confirm: "コメントを削除しますか？" }%>
+                <% end %>
                 <br />
 
               </div>
@@ -172,7 +180,9 @@
 
     <%= form_for [@post, @comment] do |f| %>
       <%= f.text_area :comment, :rows => 5, style: 'width:80%;border:solid 2px #f0f0f0' %>
-      <%= f.file_field :files, multiple: true %>
+      <% if current_user.admin? %>
+        <%= f.file_field :files, multiple: true %>
+      <% end %>
       <%= f.submit '送信', class: "btn  bg-color2 text-white" %>
     <% end %>
   </div>
