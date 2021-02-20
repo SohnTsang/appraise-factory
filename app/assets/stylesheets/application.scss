@@ -57,6 +57,9 @@
 }
 
 @media (max-width: 767.98px) {
+  .w-30 {
+    width: 100% !important;
+  }
   .mx-w-100 {
     max-width: 100% !important;
   }
