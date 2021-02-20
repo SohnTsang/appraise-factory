@@ -92,13 +92,13 @@
     </div>
 
         <div class="form-group row">
-            <%= f.label :city, '市区町村名', class: 'col-sm-2 col-form-label' %>
+            <%= f.label :city, '都道府県・市区町村', class: 'col-sm-2 col-form-label' %>
             <div class="col-sm-10">
-              <%= f.text_field :city, class: 'form-control' %>
+              <%= f.text_field :city, class: 'form-control', placeholder: '東京都千代田区', maxlength: '40'%>
             </div>
-            <%= f.label :station, '沿線・駅名', class: 'col-sm-2 col-form-label' %>
+            <%= f.label :station, '沿線・駅', class: 'col-sm-2 col-form-label' %>
             <div class="col-sm-10">
-              <%= f.text_field :station, class: 'form-control' %>
+              <%= f.text_field :station, class: 'form-control', placeholder: 'JR山手線東京', maxlength: 40 %>
             </div>
             <small style="color:red">必ずいずれかを入力してください</small>
         </div>
@@ -106,11 +106,11 @@
         <div class="form-group row">
             <%= f.label :size, '広さ（m2）', class: 'col-sm-2 col-form-label' %>
             <div class="col-sm-10">
-              <%= f.text_field :size, class: 'form-control' %>
+              <%= f.number_field :size, class: 'form-control', :max	=> 999999, :min => 0 %>
             </div>
             <%= f.label :floor_plan, '間取り', class: 'col-sm-2 col-form-label' %>
             <div class="col-sm-10">
-              <%= f.text_field :floor_plan, class: 'form-control' %>
+              <%= f.text_field :floor_plan, class: 'form-control', maxlength: 10 %>
             </div>
             <small style="color:red">必ずいずれかを入力してください</small>
         </div>
@@ -123,7 +123,7 @@
         <div class="form-group row">
             <%= f.label :content, 'その他', class: 'col-sm-2 col-form-label' %>
             <div class="col-sm-10">
-              <%= f.text_field :content, class: 'form-control' %>
+              <%= f.text_field :content, class: 'form-control', maxlength: 2000 %>
             </div>
         </div>
         <div class="actions">
