@@ -63,25 +63,25 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { protocol: 'https',host:'appraise-factory.herokuapp.com'}
-  # ActionMailer::Base.smtp_settings = {
-  #   :address        => 'smtp.gmail.com',
-  #   :port           => '587',
-  #   :authentication => :plain,
-  #   :user_name      => "tsangkaho12@gmail.com",
-  #   :password       => "ezlklwqnvxskhvuk",
-  #   :domain         => 'gmail.com',
-  #   :authentication => :plain,
-  #   :enable_starttls_auto => true
-  # }
   ActionMailer::Base.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => 587,
-    :domain => 'gmail.com',
-    :user_name => 'noreply.appraise@gmail.com',
-    :password => "gglbtijlvhjkyozo",
+    :address        => 'smtp.gmail.com',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => "kawasaki503@gmail.com",
+    :password       => "fhzgwvaufwruibwv",
+    :domain         => 'gmail.com',
     :authentication => :plain,
     :enable_starttls_auto => true
   }
+  # ActionMailer::Base.smtp_settings = {
+  #   :address => "smtp.gmail.com",
+  #   :port => 587,
+  #   :domain => 'gmail.com',
+  #   :user_name => 'noreply.appraise@gmail.com',
+  #   :password => "gglbtijlvhjkyozo",
+  #   :authentication => :plain,
+  #   :enable_starttls_auto => true
+  # }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

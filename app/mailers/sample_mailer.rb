@@ -8,7 +8,8 @@ class SampleMailer < ApplicationMailer
   def send_when_post_create(user)
     @user = user
 
-    mail to: 'noreply.appraise@gmail.com',
+    mail to: 'noreply@appraise-factory.net',
+          bcc: 'kawasaki503@gmail.com',
 
          subject: '新しい依頼がありました。'
   end
@@ -16,7 +17,8 @@ class SampleMailer < ApplicationMailer
     @user = user
 
     if user.email != "appraise-factory@gmail.com"
-      mail to: 'noreply.appraise@gmail.com',
+      mail to: 'noreply@appraise-factory.net',
+            bcc: 'kawasaki503@gmail.com',
 
            subject: 'お客様から返信がありました。'
     end
